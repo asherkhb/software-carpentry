@@ -1,0 +1,30 @@
+"jobtype"
+    serial, Serial Software, HTC System
+    large_mpi, Parallel MPI Software, Cluster System
+    large_smp, Parallel Threaded/OpenMP Software, SMP System
+    small_mpi, Small MPI Job, HTC System
+    small_smp, Small SMP Job, HTC System
+    htc_only, Only Use HTC System
+    cluster_only, Only Use Cluster System
+    smp_only, Only Use SMP System
+
+"select", "cpu", "memory": #PBS -l select=X:ncpus=Y:mem=Z
+    Basic HPC: dual processor, 6-core CPU 2GB memory per core (12-core, 24GB memory)
+    Basic Cluster: dual processor, 6-core CPU 2GB memory per core (12-core, 24GB memory)
+    Basic SMP: dual processor, 8-core CPU 2GB memory per core (16-core, 32GB memory)
+    High Memory HTC: 4 nodes, 8GB/core (12-core, 96GB memory) available high priority, standard, windfall
+    ...
+
+
+"cputime", "walltime"
+
+UA HPC Custom Resources
+    Checkpoint & Allow Restart of serial jobs that exceed 30-days of execution and are interrupted for exceeding maximum
+    walltime for a queue or by hardware failure. Only available on HTC compute nodes.
+        -l checkpoint=1
+    Allocate 1.5TB disk space on any or each HTC compute node (for I/O intensive jobs)
+        -l localscratch=1
+    Require job to run on nodes with specific GB/core ratios
+        -l select=1:ncpus=1:mem=4gb:pcmem=4gb
+
+Interactive
